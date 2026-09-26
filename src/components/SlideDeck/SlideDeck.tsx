@@ -216,27 +216,45 @@ export default function SlideDeck() {
       </div>
 
       {/* ═════ SLIDE 5 ═════ */}
-      <div ref={slide5Ref} className="absolute inset-0 flex items-center justify-center" style={{ zIndex: 10, opacity: 0, padding: '0 clamp(24px, 8vw, 120px)' }}>
-        <div className="flex flex-col gap-8 max-w-[800px] text-center items-center">
-          <h2
-            className="text-3xl md:text-[56px] font-bold leading-[1.1]"
+      <div ref={slide5Ref} className="absolute inset-0 flex flex-col justify-center" style={{ zIndex: 10, opacity: 0, padding: '0 clamp(40px, 8vw, 140px)' }}>
+        <div className="flex gap-12 md:gap-20 items-start">
+          {/* Left label */}
+          <p
+            className="shrink-0 hidden md:block"
             style={{
-              background: 'linear-gradient(135deg, #3BA778 0%, #2E96FF 60%, #1D60AB 100%)',
-              WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+              fontSize: 12,
+              fontWeight: 500,
+              letterSpacing: '0.15em',
+              color: 'rgba(255,255,255,0.5)',
+              textTransform: 'uppercase',
+              fontFamily: 'monospace',
+              paddingTop: 12,
             }}
           >
-            Finding the Story You Already Have
-          </h2>
-          <div className="flex flex-col gap-2">
-            <p className="text-sm md:text-[20px] font-light text-[#8A8A8A] leading-relaxed">
-              Every brand has a story. Most tell it poorly or don&rsquo;t tell it at all, burying it beneath products and campaigns.
-            </p>
-            <p className="text-sm md:text-[20px] font-light text-[#8A8A8A] leading-relaxed">
-              We work with you to uncover that story and translate it into communication that&rsquo;s consistent and distinctive.
-            </p>
-            <p className="text-sm md:text-[20px] font-light text-[#8A8A8A] leading-relaxed">
-              Because a story, told well, is what gives a brand its soul.
-            </p>
+            Our<br />Approach
+          </p>
+          {/* Main statement */}
+          <div style={{ maxWidth: 900 }}>
+            <h2
+              className="text-2xl md:text-[42px] lg:text-[50px] font-semibold leading-[1.15] tracking-tight"
+              style={{ color: '#FFFFFF' }}
+            >
+              Finding the Story{' '}
+              <span style={{ color: 'rgba(255,255,255,0.35)' }}>
+                You Already Have
+              </span>
+            </h2>
+            <div className="flex flex-col gap-4 mt-10">
+              <p style={{ fontSize: 17, fontWeight: 300, color: '#D9D9D9', lineHeight: 1.7 }}>
+                Every brand has a story. Most tell it poorly or don&rsquo;t tell it at all, burying it beneath products and campaigns.
+              </p>
+              <p style={{ fontSize: 17, fontWeight: 300, color: '#D9D9D9', lineHeight: 1.7 }}>
+                We work with you to uncover that story and translate it into communication that&rsquo;s consistent and distinctive.
+              </p>
+              <p style={{ fontSize: 17, fontWeight: 300, color: '#D9D9D9', lineHeight: 1.7 }}>
+                Because a story, told well, is what gives a brand its soul.
+              </p>
+            </div>
           </div>
         </div>
       </div>
