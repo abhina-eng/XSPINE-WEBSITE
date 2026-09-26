@@ -21,6 +21,8 @@ uniform float uYaw;
 uniform float uLineThickness;
 uniform vec3 uLinesColor;
 uniform vec3 uScanColor;
+uniform vec3 uScanColor2;
+uniform vec3 uLinesColor2;
 uniform float uGridScale;
 uniform float uLineStyle;
 uniform float uLineJitter;
@@ -220,9 +222,12 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
     combinedAura += (auraBand * 0.25) * phaseWindow * clamp(uScanOpacity, 0.0, 1.0);
 
     float lineVis = lineMask;
-    vec3 gridCol = uLinesColor * lineVis * fade;
-    vec3 scanCol = uScanColor * combinedPulse;
-    vec3 scanAura = uScanColor * combinedAura;
+    float gradT = clamp((p.x * 0.5 + 0.5) * 0.7 + (1.0 - p.y * 0.5 + 0.5) * 0.3, 0.0, 1.0);
+    vec3 blendedLines = mix(uLinesColor, uLinesColor2, gradT);
+    vec3 blendedScan = mix(uScanColor, uScanColor2, gradT);
+    vec3 gridCol = blendedLines * lineVis * fade;
+    vec3 scanCol = blendedScan * combinedPulse;
+    vec3 scanAura = blendedScan * combinedAura;
 
     color = gridCol + scanCol + scanAura;
 
@@ -253,7 +258,9 @@ interface GridScanProps {
   sensitivity?: number;
   lineThickness?: number;
   linesColor?: string;
+  linesColor2?: string;
   scanColor?: string;
+  scanColor2?: string;
   scanOpacity?: number;
   gridScale?: number;
   lineStyle?: 'solid' | 'dashed' | 'dotted';
@@ -279,7 +286,9 @@ export const GridScan = ({
   sensitivity = 0.55,
   lineThickness = 1,
   linesColor = '#2F293A',
+  linesColor2,
   scanColor = '#3BA778',
+  scanColor2,
   scanOpacity = 0.4,
   gridScale = 0.1,
   lineStyle = 'solid',
@@ -362,6 +371,8 @@ export const GridScan = ({
       uLineThickness: { value: lineThickness },
       uLinesColor: { value: srgbColor(linesColor) },
       uScanColor: { value: srgbColor(scanColor) },
+      uScanColor2: { value: srgbColor(scanColor2 || scanColor) },
+      uLinesColor2: { value: srgbColor(linesColor2 || linesColor) },
       uGridScale: { value: gridScale },
       uLineStyle: { value: lineStyle === 'dashed' ? 1 : lineStyle === 'dotted' ? 2 : 0 },
       uLineJitter: { value: Math.max(0, Math.min(1, lineJitter || 0)) },
@@ -479,7 +490,7 @@ export const GridScan = ({
       if (container.contains(renderer.domElement)) container.removeChild(renderer.domElement);
     };
   }, [
-    sensitivity, lineThickness, linesColor, scanColor, scanOpacity, gridScale,
+    sensitivity, lineThickness, linesColor, linesColor2, scanColor, scanColor2, scanOpacity, gridScale,
     lineStyle, lineJitter, scanDirection, enablePost, noiseIntensity, bloomIntensity,
     scanGlow, scanSoftness, scanPhaseTaper, scanDuration, scanDelay,
     bloomThreshold, bloomSmoothing, chromaticAberration, smoothTime, skewScale, yBoost
