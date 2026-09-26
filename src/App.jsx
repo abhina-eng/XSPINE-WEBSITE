@@ -7,8 +7,9 @@ import GridTunnel from "@/components/GridTunnel/GridTunnel";
 import XSpineHero from "@/components/XSpineHero/XSpineHero.jsx";
 import GradientHeading from "@/components/GradientHeading";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
-import StoryTransition from "@/components/StoryTransition/StoryTransition";
-import BelieveSection from "@/components/BelieveSection/BelieveSection";
+import SlideDeck from "@/components/SlideDeck/SlideDeck";
+import XSpineFocus from "@/components/XSpineFocus/XSpineFocus";
+import MethodMadness from "@/components/MethodMadness/MethodMadness";
 import DotField from "@/components/DotField/DotField";
 
 export default function App() {
@@ -76,28 +77,16 @@ export default function App() {
               style={{ width: '100%', height: '100%' }}
             />
           }
-        >
-          {/* Section 4: text + XSpineHero */}
-          <div className="flex flex-col items-center gap-5 pt-[15vh] md:pt-[18vh] px-4 md:px-[4%] shrink-0">
-            <ScrollReveal>
-              <GradientHeading>Hand-holding heroes</GradientHeading>
-            </ScrollReveal>
-            <ScrollReveal delay={0.15}>
-              <p className="max-w-[630px] text-center text-base md:text-[24px] font-light text-[#8A8A8A] leading-relaxed">
-                We're a fluid creative system, bringing together the right minds, disciplines and perspectives at the right time. Our borderless and collaborative model builds around the needs.
-              </p>
-            </ScrollReveal>
-          </div>
-          <div className="relative w-full flex-1 min-h-0">
-            <XSpineHero />
-          </div>
-        </GridTunnel>
+        />
 
-        {/* Section 4: Story transition — logo shrinks, text slides in */}
-        <StoryTransition />
+        {/* Sections 4-5-6 pinned in single viewport with curtain-blinds transitions */}
+        <SlideDeck />
 
-        {/* Section 6: What we believe / How we get there */}
-        <BelieveSection />
+        {/* Section 7: X + Spine focus */}
+        <XSpineFocus />
+
+        {/* Section 8: Method in the Madness — 3D spatial carousel */}
+        <MethodMadness />
 
       </div>
     </Loader>
