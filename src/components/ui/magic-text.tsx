@@ -26,8 +26,8 @@ const Word: React.FC<WordProps> = ({ children, progress, range, variant }) => {
   const opacity = useTransform(progress, range, [0, 1]);
   const color = useTransform(
     opacity,
-    [0, 0.5, 1],
-    ["rgba(255,255,255,0.2)", "#3BA778", "#ffffff"]
+    [0, 0.3, 0.6, 1],
+    ["rgba(255,255,255,0.2)", "#3BA778", "#1D60AB", "#ffffff"]
   );
 
   return (

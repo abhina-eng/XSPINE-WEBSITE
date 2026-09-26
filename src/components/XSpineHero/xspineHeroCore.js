@@ -189,7 +189,9 @@ export function createXSpineHero(container, options = {}) {
     const tx = pointer.active && !drag.active ? (pointer.y / H - 0.5) * -0.25 : 0;
     const ty = pointer.active && !drag.active ? (pointer.x / W - 0.5) * 0.3 : 0;
     tiltX += (tx - tiltX) * 0.05; tiltY += (ty - tiltY) * 0.05;
-    const spin = idleSpin + entrySpin + drag.dragX;
+    const scrollRotEl = container.parentElement || container;
+    const scrollRot = parseFloat(scrollRotEl.style.getPropertyValue('--scroll-rot') || '0') * (Math.PI / 180);
+    const spin = idleSpin + entrySpin + drag.dragX + scrollRot;
     pivot.rotation.set(tiltX + (1 - rise) * 0.5 + drag.dragY, spin + tiltY, 0);
     pivot.position.y = -(viewHalfH + 0.7) * (1 - rise) + Math.sin(now * 0.0009) * 0.02 * lp;
     const sc = 0.7 + 0.3 * easeOutCubic(lp);
